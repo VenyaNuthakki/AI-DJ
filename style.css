@@ -21,7 +21,7 @@ body
   	float: left;
   }
 
-  .div_speed_img
+  .speed_img
   {
   	width: 200px; 
   	border-radius: 100px;
@@ -36,12 +36,6 @@ body
   .div_volume
   {
   	float: right;	
-  }
-
-  .div_volume_img
-  {
-  	width: 200px; 
-  	border-radius: 100px;
   }
 
   #volume

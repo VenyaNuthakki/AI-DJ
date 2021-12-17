@@ -3,6 +3,7 @@ leftwristx="";
 leftwristy="";
 rightwristx="";
 rightwristy="";
+leftwristscore=""
 function preload(){
     song=loadSound("music.mp3");
 }
@@ -18,10 +19,6 @@ function setup(){
 
 function modelloaded(){
     console.log("posenet is intialised");
-}
-
-function draw(){
-    image(video,0,0,600,500);
 }
 
 function playsound(){
@@ -45,5 +42,20 @@ function getposes(results){
         console.log(leftwristy);
         console.log(rightwristx);
         console.log(rightwristy);
+        leftwristscore=results[0].pose.keypoints[9].score;
+    }
+}
+
+function draw(){
+    image(video,0,0,600,500);
+    fill("purple");
+    stroke("blue");
+    if(leftwristscore>0.2){
+    circle(leftwristx,leftwristy,20);
+    newleftwristy=Number(leftwristy);
+    removedecimals=floor(newleftwristy)
+    volume=removedecimals/500;
+    song.setVolume(volume);
+    document.getElementById("volume").innerHTML="volume:"+volume;
     }
 }
