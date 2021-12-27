@@ -3,7 +3,8 @@ leftwristx="";
 leftwristy="";
 rightwristx="";
 rightwristy="";
-leftwristscore=""
+leftwristscore="";
+rightwristscore="";
 function preload(){
     song=loadSound("music.mp3");
 }
@@ -43,6 +44,7 @@ function getposes(results){
         console.log(rightwristx);
         console.log(rightwristy);
         leftwristscore=results[0].pose.keypoints[9].score;
+        rightwristscore=results[0].pose.keypoints[10].score;
     }
 }
 
@@ -57,5 +59,28 @@ function draw(){
     volume=removedecimals/500;
     song.setVolume(volume);
     document.getElementById("volume").innerHTML="volume:"+volume;
+    }
+    if(rightwristscore>0.2){
+        circle(rightwristx,rightwristy,20);
+        if(rightwristy>0&rightwristy<=100){
+            song.rate(0.5);
+            document.getElementById("speed").innerHTML="speed:0.5x";
+        }
+        else if(rightwristy>100&rightwristy<=200){
+            song.rate(1);
+            document.getElementById("speed").innerHTML="speed:1x";
+        }
+        if(rightwristy>200&rightwristy<=300){
+            song.rate(1.5);
+            document.getElementById("speed").innerHTML="speed:1.5x";
+        }
+        if(rightwristy>300&rightwristy<=400){
+            song.rate(2);
+            document.getElementById("speed").innerHTML="speed:2x";
+        }
+        if(rightwristy>400&rightwristy<=500){
+            song.rate(2.5);
+            document.getElementById("speed").innerHTML="speed:2.5x";
+        }
     }
 }
